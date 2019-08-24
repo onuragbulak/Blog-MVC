@@ -1,0 +1,31 @@
+﻿@model MvcProjesi.Data.Makale
+
+@{
+    ViewBag.Title = "YorumMakalesi";
+}
+
+
+<h2 style="margin-top:7%">Makale Detayı</h2>
+
+<div style="width:100%;margin-top:25px;box-shadow:0 0 5px gray;padding:25px;">
+    <h3 style="font-weight:bold;color:red">
+        @Html.ActionLink(Model.Baslik, "MakaleDetay", new { makaleId = Model.Id })
+    </h3>
+
+    <hr />
+
+    @Html.DisplayFor(i => Model.Icerik)
+    <hr />
+    @Html.Label("Tarih : ")
+
+    @Html.DisplayFor(i => Model.OlusturmaTarih)
+    <hr />
+    <h4>Makaleyi Yazan</h4>
+
+    @if (Model.Uye != null)
+    {
+        string adSoyad = Model.Uye.Ad + " " + Model.Uye.Soyad;
+        @Html.Label("Adı ve Soyadı : ")<text>&nbsp; &nbsp;</text> @adSoyad
+    }
+
+</div>

@@ -1,0 +1,24 @@
+﻿@model List<MvcProjesi.Data.Yorum>
+
+<div style="border:1px solid black;padding:2%;text-align:center;">
+    <h3 style="margin-top:8.5%">Son Beş Yorum</h3>
+    @{
+        foreach (var item in Model)
+        {
+            <div style="border:1px solid #9d9d9d; background-color:black;">
+                
+                <h3 style="color:#9d9d9d">Üye Bilgileri</h3>
+                Adı : @item.Uye.Ad<br />
+                Soyadı : @item.Uye.Soyad<br />
+
+                <h4 style="color:#9d9d9d">Makale Bilgileri</h4>
+                Başlık : @Html.ActionLink(item.Makale.Baslik, "YorumMakalesi", new { yorumId = item.Id })
+
+                <h4 style="color:#9d9d9d">Yorumun İçeriği</h4>
+                <p style="color:#9d9d9d">@item.Icerik</p>
+                <p style="color:#9d9d9d">Tarih : @item.OlusturmaTarih</p>
+            </div>
+        }
+    }
+
+</div>

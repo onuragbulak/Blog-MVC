@@ -1,0 +1,16 @@
+﻿@model List<MvcProjesi.Data.Etiket>
+
+<div style="border:1px solid black;padding:2%;text-align:center;">
+    <h3>En Çok Kullanılan On Etiket</h3>
+    @{
+        foreach (var item in Model)
+        {
+            <ul style="border:1px solid #9d9d9d; background-color:black">
+                <li style="color:#9d9d9d">
+                @Html.ActionLink(item.Icerik,"EtiketinMakaleleri",new { etiketId = item.Id})
+                </li>
+            </ul>          
+        }
+    }
+</div>
+

@@ -1,0 +1,29 @@
+﻿@model IEnumerable<MvcProjesi.Data.Makale>
+
+<h1 style="margin-top:8.5%">Makaleler</h1>
+
+@{
+
+    foreach (var item in Model)
+    {
+        <div style="width:100%;margin-top:25px;box-shadow:0 0 5px gray;padding:25px;">
+
+            <h3 style="font-weight:bold;color:red">
+                @Html.ActionLink(item.Baslik, "MakaleDetay", new { makaleId = item.Id })
+            </h3>
+            <hr />
+            @Html.DisplayFor(i => item.Icerik)
+            <hr />
+            @Html.Label("Tarih : ")
+            @Html.DisplayFor(i => item.OlusturmaTarih)
+            <hr />
+            <h4>Makaleyi Yazan</h4>
+
+            @if (item.Uye != null)
+            {
+                string adSoyad = item.Uye.Ad + " " + item.Uye.Soyad;
+                @Html.Label("Adı ve Soyadı : ")<text>&nbsp;&nbsp;</text> @adSoyad
+            }
+        </div>
+    }
+}

@@ -1,0 +1,61 @@
+﻿@model MvcProjesi.Data.Makale
+
+@{
+    ViewBag.Title = "MakaleDetay";
+}
+
+<h2 style="margin-top:8.5%">Makale Detayı</h2>
+
+<div style="width:100%;margin-top:25px;box-shadow:0 0 5px gray;padding:25px;">
+
+    <h3 style="font-weight:bold;color:red">
+        @Html.DisplayFor(i => Model.Baslik)
+    </h3>
+
+    <hr />
+
+    @Html.DisplayFor(i => Model.Icerik)
+    <hr />
+    @Html.Label("Tarih : ")
+
+    @Html.DisplayFor(i => Model.OlusturmaTarih)
+
+    <hr />
+    @Html.Label("Etiket :")
+    @foreach (var item in Model.Etikets)
+    {
+        <dl>
+            @item.Icerik
+        </dl>
+    }
+    <hr />
+    <h4>Makaleyi Yazan</h4>
+
+
+    @if (Model.Uye != null)
+    {
+        string adSoyad = Model.Uye.Ad + " " + Model.Uye.Soyad;
+        @Html.Label("Adı ve Soyadı : ")<text>&nbsp;</text> @adSoyad
+    }
+
+
+    @Html.Action("YorumGiris", "Text", new { makaleId = Model.Id, uyeId = Model.Uye.Id })
+
+</div>
+<div style="width:100%;margin-top:25px;box-shadow:0 0 5px gray;padding:25px;">
+    <h4 style="font-weight:bold;color:red">Yorumlar</h4>
+    @foreach (var item in Model.Yorums)
+    {
+        <div style="width:100%;margin-top:25px;box-shadow:0 0 5px gray;padding:25px;">
+            <dl>
+                @item.Icerik
+            </dl>
+
+            <dl>
+                @Html.Label("Adı ve Soyadı : ")
+                <text>&nbsp;</text> @item.Uye.Ad @item.Uye.Soyad
+            </dl>
+        </div>
+    }
+
+</div>
